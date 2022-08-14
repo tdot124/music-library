@@ -23,12 +23,28 @@ exports.read = async (_,res) => {
     const db = await getDb();
 
     try {
-        const [artistData] = await db.query('SELECT * FROM Artist');
-        res.status(200).json(artistData);    
+        const [artist] = await db.query('SELECT * FROM Artist');
+        res.status(200).json(artist);    
     } catch (err) {
         res.status(500).json(err);
     }
     db.end();
 };
+
+exports.readById = async (req,res) => {
+    const db = await getDb();
+    const { artistId } = req.params;
+    
+    const [[artist]] = await db.query('SELECT * FROM Artist WHERE id = ?', artistId);
+    
+    if (!artist) {
+        res.sendStatus(404);
+    } else {
+        res.status(200).json(artist);
+    }
+    db.end();            
+    };
+    
+
 
   
