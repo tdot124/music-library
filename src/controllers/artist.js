@@ -7,7 +7,10 @@ exports.create = async (req, res) => {
     try {
 
     await db.query(
-        `INSERT INTO Artist (name, genre) VALUES ('${name}', '${genre}')`);
+        'INSERT INTO Artist (name, genre) VALUES (?, ?)', [
+            name,
+            genre,
+        ]);
     res.sendStatus(201);
     } catch (err) {
     res.sendStatus(500).json(err);
