@@ -2,7 +2,7 @@ const getDb = require('../services/db');
 
 exports.create = async (req, res) => {
     const db = await getDb();
-    const { name, genre } = req.body
+    const { name, genre } = req.body;
 
     try {
 
@@ -18,3 +18,17 @@ exports.create = async (req, res) => {
 
     db.end();
   };
+
+exports.read = async (_,res) => {
+    const db = await getDb();
+
+    try {
+        const [artistData] = await db.query('SELECT * FROM Artist');
+        res.status(200).json(artistData);    
+    } catch (err) {
+        res.status(500).json(err);
+    }
+    db.end();
+};
+
+  
