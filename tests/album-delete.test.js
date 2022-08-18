@@ -21,37 +21,27 @@ describe('delete album', () => {
           'Tool',
           'Rock',
         ]),
-      ]);
+      ]);  
 
-      const [[fourTet]] = await db.query(
-        `SELECT * FROM Artist WHERE name = ?`, ['Four Tet']
+      const [artists] = await db.query(
+        `SELECT * FROM Artist`
       );
-
-      const [[noisia]] = await db.query(
-        `SELECT * FROM Artist WHERE name = ?`, ['Noisia']
-      );
-
-      const [[tool]] = await db.query(
-        `SELECT * FROM Artist WHERE name = ?`, ['Tool']
-      );
-
-      // perhaps const artists above then use artists[0],[1],[2] below
 
       await Promise.all([
         db.query('INSERT INTO Album (name, year, artistId) VALUES(?, ?, ?)', [
           'New Energy',
           2017,
-          fourTet.id,
+          artists[0].id,
         ]),
         db.query('INSERT INTO Album (name, year, artistId) VALUES(?, ?, ?)', [
           'Split The Atom',
           2010,
-          noisia.id,
+          artists[1].id,
         ]),
         db.query('INSERT INTO Album (name, year, artistId) VALUES(?, ?, ?)', [
           '10,000 Days',
           2006,
-          tool.id,
+          artists[2].id,
         ]),
       ]);
       [albums] = await db.query('SELECT * FROM Album');
