@@ -41,7 +41,7 @@ exports.read = async (_,res) => {
 exports.readById = async (req,res) => {
     const db = await getDb();
     const { albumId } = req.params;
-
+    
     const [[album]] = await db.query('SELECT * FROM Album WHERE id = ?', albumId);
 
     if(!album) {
@@ -51,6 +51,27 @@ exports.readById = async (req,res) => {
     }
     db.end();
     };
+
+exports.updateById = async (req,res) => {
+    const db = await getDb();
+    const { albumId } = req.params;
+    const data = req.body;
+
+    try {
+        const [
+            { affectedRows }
+        ] = await db.query('UPDATE Album SET ? WHERE id = ?', [data, albumId]);
+        
+        if (!affectedRows) {
+            res.sendStatus(404);
+        } else {
+            res.status(200).send();
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }     
+    db.end();
+}
 
 exports.deleteById = async (req,res) => {
     const db = await getDb();

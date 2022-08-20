@@ -6,6 +6,7 @@ const app = require('../src/app');
 describe('update artist', () => {
   let db;
   let artists;
+
   beforeEach(async () => {
     db = await getDb();
     await Promise.all([
@@ -46,6 +47,7 @@ describe('update artist', () => {
         ] = await db.query('SELECT * FROM Artist WHERE id = ?', [artist.id]);
 
         expect(newArtistRecord.name).to.equal('new name');
+        expect(newArtistRecord.genre).to.equal('new genre');
       });
 
       it('returns a 404 if the artist is not in the database', async () => {
