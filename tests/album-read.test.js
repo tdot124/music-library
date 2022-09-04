@@ -25,19 +25,11 @@ describe('read album', () => {
             ]),
         ]);
 
-        const [[fourTet]] = await db.query(
-            `SELECT * FROM Artist WHERE name = ?`, ['Four Tet']
-        );
+        const [artists] = await db.query('SELECT * FROM Artist');
 
-        const [[noisia]] = await db.query(
-            `SELECT * FROM Artist WHERE name = ?`, ['Noisia']
-        );
-
-        const [[tool]] = await db.query(
-            `SELECT * FROM Artist WHERE name = ?`, ['Tool']
-        );
-
-        // perhaps const artists above then use artists[0],[1],[2] below
+        const fourTet = artists[0];
+        const noisia = artists[1];
+        const tool = artists[2];
 
         await Promise.all([
             db.query('INSERT INTO Album (name, year, artistId) VALUES(?, ?, ?)', [
