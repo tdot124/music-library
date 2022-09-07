@@ -6,7 +6,7 @@ This API lets you interact with a database to use CRUD functions on artist and a
 
 ## Installation and setup
 
-You will need to have MYSQL2 running in a docker container on your machine to host the database. You can use [Postman](https://www.postman.org) to interact with the database.
+You will need to have MYSQL2 running in a docker container on your machine to host the database. You can use [Postman](https://www.postman.org) to interact with API/Express App.
 
 Clone the git repository
 
@@ -22,6 +22,16 @@ Install Express and MySql2
 
 ```bash
 npm i -S express mysql2
+```
+
+Set up a .env file with the following format
+
+```bash
+DB_PASSWORD=
+DB_NAME=
+DB_USER=
+DB_HOST=
+DB_PORT=
 ```
 
 You can then start the application using 
