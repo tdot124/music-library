@@ -1,6 +1,6 @@
 # Music Library API
 
-This Music Library API was built as my first backend project as part of the Manchester Codes software development bootcamp. The objectves were to use what we had learnt to design and implement an API that can perform CRUD (Create, Read, Update, Delete) operations on a database.
+This Music Library API was built as my first backend project as part of the Manchester Codes software development bootcamp. The objectves were to design and implement an API that can perform CRUD (Create, Read, Update, Delete) operations on a database.
 
 This API lets you interact with a database to use CRUD functions on artist and album data. Album data is linked to artists via a foreign key.
 
